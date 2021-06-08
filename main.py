@@ -1,12 +1,12 @@
 import pygame
 from pygame.locals import *
-from person import Human
+
 from config import *
+from person import Human
 
 # Init Pygame
 pygame.init()
 clock = pygame.time.Clock()
-
 
 # Create screen object
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -20,14 +20,13 @@ for i in range(AMOUNT_HUMANS):
         human = Human()
     all_human.add(human)
 
-
 # Variable tu keep game loop running
 running = True
 
 # Game Loop
 while running:
 
-    #---------EVENTS---------------------------------
+    # ---------EVENTS---------------------------------
     # Get every event
     for event in pygame.event.get():
         # Check if user hit a key
@@ -40,11 +39,10 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    #Randomly move humans
+    # Randomly move humans
     for human in all_human:
         human.move()
         human.check_collision(all_human)
-
 
     # --------DISPLAY----------------------------------
     # Fill Screen Black
@@ -57,5 +55,5 @@ while running:
     # Update display
     pygame.display.flip()
 
-    #Sets framerate
+    # Sets framerate
     clock.tick(30)

@@ -1,5 +1,5 @@
 import random
-from math import sqrt
+
 import pygame
 
 from config import *
@@ -22,7 +22,6 @@ class Human(pygame.sprite.Sprite):
         pygame.draw.circle(self.surf, WHITE, (self.width / 2, self.height / 2), self.radius)
         if self.is_infected:
             self.infect()
-
 
     def move(self):
         self.vel_x = self.vel_x + random.randint(-SPEED, SPEED)
@@ -56,6 +55,7 @@ class Human(pygame.sprite.Sprite):
             for human in hits:
                 if human.is_infected:
                     self.infect()
+
     def infect(self):
         self.is_infected = True
         pygame.draw.circle(self.surf, RED, (self.width / 2, self.height / 2), self.radius)
