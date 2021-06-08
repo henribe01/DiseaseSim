@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 from person import Human
-from config import  *
+from config import *
 
 # Init Pygame
 pygame.init()
