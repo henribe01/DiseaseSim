@@ -9,10 +9,17 @@ clock = pygame.time.Clock()
 
 
 # Create screen object
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_WIDTH))
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-# Create Human
-human = Human()
+# create group of human
+all_human = pygame.sprite.Group()
+for i in range(AMOUNT_HUMANS):
+    if i == 1:
+        human = Human(is_infected=True)
+    else:
+        human = Human()
+    all_human.add(human)
+
 
 # Variable tu keep game loop running
 running = True
@@ -33,15 +40,19 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    #Randomly move human
-    human.move()
+    #Randomly move humans
+    for human in all_human:
+        human.move()
+        human.check_collision(all_human)
+
 
     # --------DISPLAY----------------------------------
     # Fill Screen Black
     screen.fill(BLACK)
 
-    # Draw human
-    screen.blit(human.surf, human.rect)
+    # Draw entities
+    for human in all_human:
+        screen.blit(human.surf, human.rect)
 
     # Update display
     pygame.display.flip()
